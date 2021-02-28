@@ -1,0 +1,7 @@
+@import 'global';
+
+.infromation-area {
+    @extend %g__contents-block;
+
+    line-height: 1.5;
+}

@@ -1,0 +1,19 @@
+@import 'global';
+
+
+.participation {
+    @extend %g__contents-block;
+
+    &__input-line {
+        margin-bottom: 12px;
+    }
+
+    &__input-line-title {
+        display: inline-block;
+        width: 80px;
+    }
+
+    &__error-area {
+        color: #d12d46;
+    }
+}

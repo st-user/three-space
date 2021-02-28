@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+/*
+* ブラウザのデフォルトのスタイルをリセットするためのcss
+*/
+
+html, body, div, span,
+h1, h2, h3, h4, h5, h6,
+ul, li,
+fieldset, legend,
+label,
+header {
+    background: transparent;
+    border: 0;
+    font-size: 100%;
+    margin: 0;
+    outline: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+body {
+    line-height: 1;
+}
+
+a {
+    background: transparent;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+input, select {
+    vertical-align: middle;
+}
+
+ul {
+    list-style: none;
+}

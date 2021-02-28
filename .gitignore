@@ -1,0 +1,7 @@
+.DS_Store
+.vrm/
+dist/
+dist-discard/
+node_modules/
+scss-dest
+data/

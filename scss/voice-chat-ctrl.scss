@@ -1,0 +1,59 @@
+@import 'global';
+
+
+.voice-chat-ctrl {
+    @extend %g__contents-block;
+
+    &__actions {
+        margin-bottom: 12px;
+    }
+
+    &__select-avatar {
+        margin-bottom: 24px;
+    }
+
+    &__select-avatar-title {
+        display: inline-block;
+        width: 80px;
+    }
+
+    &__drag-and-drop-area-container {
+        margin-left: 12px;
+        margin-top: 6px;
+    }
+
+    &__vrm-drag-and-drop-area {
+        background-color: #fff;
+        background-image: radial-gradient(#000 1%, rgba(0, 0, 0, 0) 10%), radial-gradient(#000 1%, rgba(0, 0, 0, 0) 10%); /* stylelint-disable-line plugin/no-unsupported-browser-features */
+        background-position: 0 0, 6px 6px;
+        background-size: 12px 12px;
+        height: 80px;
+        width: 360px;
+    }
+
+    &__vrm-drag-and-drop-area-no-file {
+        height: 100%;
+        line-height: 80px;
+        text-align: center;
+        width: 100%;
+    }
+
+    &__vrm-drag-and-drop-area-file-info {
+        height: 100%;
+        line-height: 80px;
+        text-align: center;
+        width: 100%;
+    }
+
+    &__volumes-line {
+        margin-bottom: 12px;
+        margin-right: 18px;
+        float: left;
+    }
+
+    &__volumes-line-title {
+        display: inline-block;
+    }
+
+
+}

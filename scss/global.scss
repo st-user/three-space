@@ -1,0 +1,26 @@
+
+/*
+* アプリケーション全体で使用される汎用的なcss
+*/
+
+%g__shadow {
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+%g__border-normal {
+    border: 1px solid #333334;
+}
+
+%g__font-small {
+    font-size: 12px;
+}
+
+%g__margin-bottom {
+    margin-bottom: 12px;
+}
+
+%g__contents-block {
+    padding-bottom: 12px;
+    padding-left: 10%;
+    padding-right: 10%;
+}

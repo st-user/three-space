@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <link rel="shortcut icon" href="favicon.ico">
+        <title>three-space(仮)-devel</title>
+        <script src="./js/style.js?q=1.0.0"></script>
+    </head>
+    <body>
+
+        <div class="graphic-area">
+            <canvas id="myCanvas"></canvas>
+        </div>
+
+        <div class="infromation-area">
+            <div id="information">
+            </div>
+        </div>
+
+        <div id="participationView" class="participation">
+            <div>
+                <div class="participation__input-line">
+                    <span class="participation__input-line-title">名前:</span>
+                    <span><input type="text" name="myName" id="myName" maxlength="10"/></span>
+                </div>
+                <div class="participation__input-line">
+                    <span class="participation__input-line-title">参加キー:</span>
+                    <span><input type="text" name="spaceIdentifier" id="spaceIdentifier"/></span>
+                </div>
+                <div class="participation__input-line">
+                    <button type="button" id="participate">参加</button>
+                </div>
+            </div>
+            <div id="inputErrorArea" class="participation__error-area">
+            </div>
+        </div>
+        <div id="afterParticipationView" class="after-participation">
+            <span class="after-participation__name-title">名前:</span>
+            <span id="afterParticipationViewMyName" class="after-participation__name"></span>
+        </div>
+
+        <div id="voiceChatCtrlView" class="voice-chat-ctrl">
+            <div class="voice-chat-ctrl__actions">
+                <span><button type="button" id="joinSpace">ボイスチャットを開始</button></span>
+                <span><button type="button" id="leaveSpace">ボイスチャットを終了</button></span>
+                <span><button type="button" id="playTestSpeech">テスト音声を流す</button></span>
+            </div>
+            <div class="voice-chat-ctrl__select-avatar">
+                <div>
+                    <span class="voice-chat-ctrl__select-avatar-title">
+                        アバター:
+                    </span>
+                    <select name="selectAvatarType" id="selectAvatarType">
+                        <option value="default">デフォルト</option>
+                        <option value="vrm1">サンプル1</option>
+                        <option value="vrm2">サンプル2</option>
+                        <option value="uploadFile">アップロードしたファイル</option>
+                    </select>
+                </div>
+                <div id="vrmDragAndDropAreaWrapper" class="voice-chat-ctrl__drag-and-drop-area-container">
+                    <div id="vrmDragAndDropArea" class="voice-chat-ctrl__vrm-drag-and-drop-area">
+                        <div id="vrmDragAndDropAreaNoFile" class="voice-chat-ctrl__vrm-drag-and-drop-area-no-file">
+                            VRMファイルをDrag&amp;Dropしてください。
+                        </div>
+                        <div id="vrmDragAndDropAreaFileInfo" class="voice-chat-ctrl__vrm-drag-and-drop-area-file-info">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="voice-chat-ctrl__volumes clearfixContainer">
+                <div class="voice-chat-ctrl__volumes-line">
+                    <span class="voice-chat-ctrl__volumes-line-title">自分自身の声:</span>
+                    <span>
+                        <input type="range" name="localAudioVolumeCtrl" id="localAudioVolumeCtrl" min="0" max="100" value="0"/>
+                    </span>
+                </div>
+                <div class="voice-chat-ctrl__volumes-line">
+                    <span class="voice-chat-ctrl__volumes-line-title">他の人の声:</span>
+                    <span>
+                        <input type="range" name="remoteAudioVolumeCtrl" id="remoteAudioVolumeCtrl" min="0" max="100" value="100"/>
+                    </span>
+                </div>
+                <div id="range">
+                    <span class="voice-chat-ctrl__volumes-line-title">口パク感知レベル:</span>
+                    <span>
+                        <input name="volumeStrengthLowerLimit" id="volumeStrengthLowerLimit" type="range" min="0" max="128" value="16"/>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+        <div id="participantsStatusView" class="participants-status">
+            <div class="participants-status__list-container">
+                <div id="participantsStatusList" class="participants-status__list">
+                </div>
+            </div>
+        </div>
+
+        <script src="./js/main.js?q=1.0.0"></script>
+    </body>
+</html>

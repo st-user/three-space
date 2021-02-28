@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+/*
+* BEM(sass)に落とし込むと煩雑になると思われるセレクタや
+* サードパーティのスタイルを上書きするセレクタなど
+*/
+
+.clearfixContainer::after {
+    clear: both;
+    content: '';
+    display: block;
+}

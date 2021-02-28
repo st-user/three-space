@@ -1,0 +1,19 @@
+@import 'global';
+
+.participants-status {
+    @extend %g__contents-block;
+
+    &__list-container {
+        @extend %g__border-normal;
+        max-height: 120px;
+        width: 260px;
+    }
+
+    &__list {
+        padding: 6px;
+    }
+
+    &__list-line {
+        line-height: 1.5;
+    }
+}
