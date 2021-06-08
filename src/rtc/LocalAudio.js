@@ -7,7 +7,6 @@ export default class LocalAudio {
 
     #localAudioContextHolder;
 
-    #audio;
     #gainNode;
 
     #testSoundBuffer;
@@ -20,7 +19,6 @@ export default class LocalAudio {
 
     constructor() {
         this.#localAudioContextHolder = new AudioContextHolder();
-        this.#audio = new Audio();
     }
 
     async init() {
@@ -44,17 +42,11 @@ export default class LocalAudio {
         /* microphone */
         if (this.#localStream) {
             const source = audioContext.createMediaStreamSource(this.#localStream);
-            const localDestination = audioContext.createMediaStreamDestination();
             const gainNode = audioContext.createGain();
             this.#gainNode = gainNode;
 
             source.connect(gainNode);
-            gainNode.connect(localDestination);
-
-            this.#audio.srcObject = localDestination.stream;
-            this.#audio.play();
-
-            source.connect(destination);
+            gainNode.connect(destination);
         }
 
         this.changeGain(0);
@@ -89,19 +81,8 @@ export default class LocalAudio {
             testSource.buffer = this.#testSoundBuffer;
             testSource.start(0);
 
-            /* local */
-            const testDestination = audioContext.createMediaStreamDestination();
             testSource.connect(testGainNode);
-            testGainNode.connect(testDestination);
-
-            // TODO GCがかかるタイミングは？
-            const audio = new Audio();
-            audio.srcObject = testDestination.stream;
-            audio.play();
-
-            /* remote */
-            testSource.connect(this.#destination);
-
+            testGainNode.connect(this.#destination);
 
             return testSource;
 
