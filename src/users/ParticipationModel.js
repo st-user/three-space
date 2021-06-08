@@ -8,7 +8,7 @@ import Participants from './Participants.js';
 
 const whitespaceRegExp = /^\s+$/;
 const charRegExp = /[<>&"'\\]/;
-const numberAndAlphaRegExp = /^[\d|a-z|A-Z]+$/;
+const numberAndAlphaHyphenRegExp = /^[\d|a-z|A-Z|\\-]+$/;
 
 const checkName = inputValue => {
     return checkAll(inputValue, [
@@ -36,7 +36,7 @@ const checkSpaceIdentifier = inputValue => {
             '参加キーは空白文字のみで入力することはできません'
         ),
         checkIfInputValueMatchesRegExp(
-            numberAndAlphaRegExp,
+            numberAndAlphaHyphenRegExp,
             '参加キーは半角数値,アルファベット(大文字、小文字)のみで入力してください',
             true
         ),
