@@ -26,7 +26,6 @@ export default class RTCControlView {
 
     #$localAudioVolumeCtrl;
     #$remoteAudioVolumeCtrl;
-    #$volumeStrengthLowerLimit;
 
     constructor(rtcControlModel) {
 
@@ -46,7 +45,6 @@ export default class RTCControlView {
 
         this.#$localAudioVolumeCtrl = DOM.query('#localAudioVolumeCtrl');
         this.#$remoteAudioVolumeCtrl = DOM.query('#remoteAudioVolumeCtrl');
-        this.#$volumeStrengthLowerLimit = DOM.query('#volumeStrengthLowerLimit');
     }
 
     setUpEvent() {
@@ -103,11 +101,6 @@ export default class RTCControlView {
             );
         });
 
-        DOM.change(this.#$volumeStrengthLowerLimit, () => {
-            this.#rtcControlModel.changeVolumeStrengthLowerLimit(
-                DOM.intValue(this.#$volumeStrengthLowerLimit)
-            );
-        });
 
         [
             CustomEventNames.THREE_SPACE__VOICE_CHAT_STARTED,
@@ -142,9 +135,6 @@ export default class RTCControlView {
         DOM.none(this.#$vrmDragAndDropAreaWrapper);
         this.#rtcControlModel.changeSelectedAvatarType(
             DOM.optionValue(this.#$selectAvatarType)
-        );
-        this.#rtcControlModel.changeVolumeStrengthLowerLimit(
-            DOM.intValue(this.#$volumeStrengthLowerLimit)
         );
         DOM.none(this.#$voiceChatCtrlView);
     }

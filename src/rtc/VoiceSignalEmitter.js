@@ -12,13 +12,13 @@ export default class VoiceSignalEmitter {
 
     #isDestroyed;
 
-    constructor(remoteClientId, analyser, strengthLimitHolder) {
+    constructor(remoteClientId, analyser) {
         this.#remoteClientId = remoteClientId;
         this.#analyser = analyser;
         this.#analyser.fftSize = 2048;
         const bufferLength = this.#analyser.frequencyBinCount;
         this.#dataArray = new Uint8Array(bufferLength);
-        this.#strengthChecker = d => strengthLimitHolder.value <= d;
+        this.#strengthChecker = d => 16 <= d;
         this.#beforeResult = 0;
         this.#isDestroyed = false;
     }
@@ -63,5 +63,5 @@ export default class VoiceSignalEmitter {
     #measureSignal(arr) {
         const data = arr.map(d => Math.abs(d - 128)).filter(this.#strengthChecker);
         return data.reduce((a, b) => a + b, 0) / arr.length;
-    };
+    }
 }

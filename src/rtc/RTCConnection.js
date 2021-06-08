@@ -50,7 +50,7 @@ export default class RTCConnection {
         }
     }
 
-    initConnection(localAudio, remoteAudioGainValue, volumeStrengthLowerLimitHolder) {
+    initConnection(localAudio, remoteAudioGainValue) {
         this.#currentGainValue = remoteAudioGainValue;
 
         this.#peerConnection = new RTCPeerConnection({
@@ -89,7 +89,7 @@ export default class RTCConnection {
 
                         const frequencyAnalyser = remoteAuidoContext.createAnalyser();
                         this.#voiceSignalEmitter = new VoiceSignalEmitter(
-                            this.#remoteClientId, frequencyAnalyser, volumeStrengthLowerLimitHolder
+                            this.#remoteClientId, frequencyAnalyser
                         );
                         source.connect(frequencyAnalyser);
                         this.#voiceSignalEmitter.observeSignal();

@@ -23,14 +23,11 @@ export default class RTCHandler {
     #participants;
     #signalingChannel;
 
-    #volumeStrengthLowerLimitHolder;
-
     constructor() {
         this.#remoteAudioContextHolder = new AudioContextHolder();
         this.#rtcConnectionByClientId = new Map();
         this.#localAudio = new LocalAudio();
         this.#remoteAudioGainValue = 100;
-        this.#volumeStrengthLowerLimitHolder = { value: 0 };
     }
 
     async readyConnection(participants, vrmToSend) {
@@ -92,10 +89,6 @@ export default class RTCHandler {
         this.#rtcConnectionByClientId.forEach(conn => {
             conn.changeGain(gainValue);
         });
-    }
-
-    changeVolumeStrengthLowerLimit(value) {
-        this.#volumeStrengthLowerLimitHolder.value = value;
     }
 
     destroy() {
@@ -187,8 +180,7 @@ export default class RTCHandler {
 
             rtcConnection.initConnection(
                 this.#localAudio,
-                this.#remoteAudioGainValue,
-                this.#volumeStrengthLowerLimitHolder
+                this.#remoteAudioGainValue
             );
 
             rtcConnection.onmessage((clientId, messageObj) => {

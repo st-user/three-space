@@ -13,7 +13,6 @@ export default class RTCControlModel {
     #vrmFile;
 
     #localAudioGainValue;
-    #volumeStrengthLowerLimit;
 
     constructor(participationModel) {
         this.#participationModel = participationModel;
@@ -22,7 +21,6 @@ export default class RTCControlModel {
         this.#isTestSpeechPlaying = false;
         this.#selectAvatarType = '';
         this.#localAudioGainValue = 0;
-        this.#volumeStrengthLowerLimit = 0;
     }
 
     async startVoiceChat(param) {
@@ -81,10 +79,6 @@ export default class RTCControlModel {
 
     changeRemoteAudioGain(gainValue) {
         this.#rtcHandler.changeRemoteAudioGain(gainValue);
-    }
-
-    changeVolumeStrengthLowerLimit(value) {
-        this.#rtcHandler.changeVolumeStrengthLowerLimit(value);
     }
 
     changeSelectedAvatarType(value) {
