@@ -23,11 +23,11 @@
             <div>
                 <div class="participation__input-line">
                     <span class="participation__input-line-title">名前:</span>
-                    <span><input type="text" name="myName" id="myName" maxlength="10"/></span>
+                    <span><input type="text" name="myName" id="myName" maxlength="10" class="participation__input-line-value-my-name"/></span>
                 </div>
                 <div class="participation__input-line">
                     <span class="participation__input-line-title">参加キー:</span>
-                    <span><input type="text" name="spaceIdentifier" id="spaceIdentifier"/></span>
+                    <span><input type="text" name="spaceIdentifier" id="spaceIdentifier" class="participation__input-line-value-sp"/></span>
                 </div>
                 <div class="participation__input-line">
                     <button type="button" id="participate">参加</button>
@@ -43,14 +43,14 @@
             </div>
         </div>
         <div id="afterParticipationView" class="after-participation">
-            <div>
-                <span class="after-participation__name-title">名前:</span>
-                <span id="afterParticipationViewMyName" class="after-participation__name"></span>
-                <button type="button" id="logout">ログアウト</button>
+            <div class="after-participation__text-line">
+                <span class="after-participation__title">名前:</span>
+                <span id="afterParticipationViewMyName" class="after-participation__my-name"></span>
+                <span class="after-participation__logout"><button type="button" id="logout">ログアウト</button></span>
             </div>
-            <div id="currentSpaceIdentifier">
-                <span class="after-participation__name-title">参加キー:</span>
-                <span id="afterParticipationViewSpaceIdentifier" class="after-participation__name"></span>
+            <div id="currentSpaceIdentifier" class="after-participation__text-line">
+                <span class="after-participation__title">参加キー:</span>
+                <span id="afterParticipationViewSpaceIdentifier"></span>
             </div>
         </div>
 

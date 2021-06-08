@@ -2,10 +2,12 @@
 
 .participants-status {
     @extend %g__contents-block;
+    float: left;
 
     &__list-container {
         @extend %g__border-normal;
         max-height: 120px;
+        overflow-y: auto;
         width: 260px;
     }
 

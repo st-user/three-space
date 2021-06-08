@@ -3,6 +3,7 @@
 
 .participation {
     @extend %g__contents-block;
+    float: left;
 
     &__input-line {
         margin-bottom: 12px;
@@ -11,6 +12,15 @@
     &__input-line-title {
         display: inline-block;
         width: 80px;
+    }
+
+    &__input-line-value-my-name {
+        width: 320px;
+    }
+
+    &__input-line-value-sp {
+        font-size: 12px;
+        width: 320px;
     }
 
     &__error-area {

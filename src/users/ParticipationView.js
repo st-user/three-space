@@ -119,6 +119,7 @@ export default class ParticipationView {
 
             this.#$afterParticipationViewSpaceIdentifier.textContent = this.#participationModel.getSpaceIdentifier();
             this.#$afterParticipationViewMyName.textContent = this.#participationModel.getMyName();
+            this.#$afterParticipationViewMyName.setAttribute('title', this.#participationModel.getMyName());
 
         } else {
             this.#$inputErrorArea.innerHTML = '';

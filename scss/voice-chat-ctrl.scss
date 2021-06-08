@@ -3,6 +3,7 @@
 
 .voice-chat-ctrl {
     @extend %g__contents-block;
+    float: left;
 
     &__actions {
         margin-bottom: 12px;
