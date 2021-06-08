@@ -1,3 +1,6 @@
+import createAuth0Client from '@auth0/auth0-spa-js';
+
+import Channel from '../channel/Channel.js';
 import { checkIfInputValueEmpty, checkIfInputValueMatchesRegExp, checkAll } from '../utils/InputCheck.js';
 import { CustomEventNames } from '../utils/CustomEventNames.js';
 import CommonEventDispatcher from '../utils/CommonEventDispatcher.js';
@@ -48,6 +51,8 @@ export default class ParticipationModel {
 
     #participants;
 
+    #auth0;
+
     constructor() {
         this.#myName = '';
         this.#spaceIdentifier = '';
@@ -74,6 +79,10 @@ export default class ParticipationModel {
 
         this.#myName = inputName;
         this.#errorMessages[0] = error;
+    }
+
+    getSpaceIdentifier() {
+        return this.#spaceIdentifier;
     }
 
     #setSpaceIdentifier(spaceIdentifier) {
@@ -116,4 +125,65 @@ export default class ParticipationModel {
         return this.#errorMessages.filter(msg => 0 < msg.length);
     }
 
+    async configureAuth0Client() {
+        const config = await fetch(Channel.toEndpointUrl('/auth_config')).then(res => res.json());
+
+        this.#auth0 = await createAuth0Client({
+            domain: config.domain,
+            client_id: config.clientId,
+            audience: config.audience,
+            advancedOptions: {
+                defaultScope: ''
+            },
+            cacheLocation: 'memory',
+            useRefreshTokens: false
+        });
+    }
+
+    async checkAuthenticationState() {
+        let isAuthenticated = await this.#auth0.isAuthenticated();
+        if (!isAuthenticated) {
+            const query = window.location.search;
+
+            if (query.includes('code=') && query.includes('state=')) {
+
+                await this.#auth0.handleRedirectCallback();
+                isAuthenticated = await this.#auth0.isAuthenticated();
+
+                if (!isAuthenticated) {
+                    alert('認証処理に失敗しました。再試行してください。');
+                }
+                window.history.replaceState({}, document.title, '/');
+            }
+        }
+        CommonEventDispatcher.dispatch(CustomEventNames.THREE_SPACE__AUTHENTICATION_CHECKED, {
+            isAuthenticated
+        });
+    }
+
+    async login() {
+        await this.#auth0.loginWithRedirect({
+            redirect_uri: window.location.origin
+        });
+    }
+
+    logout() {
+        this.#auth0.logout({
+            resturnTo: window.location.origin
+        });
+    }
+
+    async generateSpaceIdentifier() {
+        try {
+            const token = await this.#auth0.getTokenSilently();
+            return await fetch(Channel.toEndpointUrl('/api/generateSpaceIdentifier'), {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(res => res.json()).then(json => json.spaceIdentifier);
+        
+        } catch(e) {
+            console.error(e);
+        }
+    }
 }

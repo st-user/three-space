@@ -25,6 +25,7 @@ CustomEventNames
     .set('THREE_SPACE__INPUT_MY_NAME_OR_SPACE_IDENTIFIER', 'three-space/input-my-name-or-space-indentifier')
     .set('THREE_SPACE__PARTICIPATION_COMPLETED', 'three-space/participation-completed')
     .set('THREE_SPACE__PARTICIPATION_DISALLOWED', 'three-space/participation-disallowed')
+    .set('THREE_SPACE__AUTHENTICATION_CHECKED', 'three-space/authentication-checked')
     .set('THREE_SPACE__VOICE_CHAT_STARTED', 'three-space/voice-chat-started')
     .set('THREE_SPACE__TEST_SPEECH_STARTED', 'three-space/test-speech-started')
     .set('THREE_SPACE__TEST_SPEECH_ENDED', 'three-space/test-speech-ended')

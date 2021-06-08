@@ -33,12 +33,25 @@
                     <button type="button" id="participate">参加</button>
                 </div>
             </div>
+            <div id="generateSpaceIdentifierArea">
+                <p>参加キーを生成するためには、ログインする必要があります。ログアウト後も参加キーは一定時間有効です。参加キーを主催者に教えてもらっていて、参加キーを知っている場合、ログインは不要です</p>
+                <button type="button" id="login">ログイン</button>
+                <button type="button" id="logoutImmediately">ログアウト</button>
+                <button type="button" id="generateSpaceIdentifier">参加キー生成</button>
+            </div>
             <div id="inputErrorArea" class="participation__error-area">
             </div>
         </div>
         <div id="afterParticipationView" class="after-participation">
-            <span class="after-participation__name-title">名前:</span>
-            <span id="afterParticipationViewMyName" class="after-participation__name"></span>
+            <div>
+                <span class="after-participation__name-title">名前:</span>
+                <span id="afterParticipationViewMyName" class="after-participation__name"></span>
+                <button type="button" id="logout">ログアウト</button>
+            </div>
+            <div id="currentSpaceIdentifier">
+                <span class="after-participation__name-title">参加キー:</span>
+                <span id="afterParticipationViewSpaceIdentifier" class="after-participation__name"></span>
+            </div>
         </div>
 
         <div id="voiceChatCtrlView" class="voice-chat-ctrl">

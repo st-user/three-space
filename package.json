@@ -42,6 +42,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.15.0",
     "@pixiv/three-vrm": "^0.6.4",
     "three": "^0.126.1"
   }
