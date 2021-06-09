@@ -3,6 +3,9 @@ import Logger from '../utils/Logger.js';
 
 const PARTICIPATE_URL = '/participate';
 
+const RETRY_INTERVAL_MILLIS = 1000;
+const MAX_RETRY_COUNT = 10;
+
 export default class Participants {
 
     myName;
@@ -15,11 +18,13 @@ export default class Participants {
     #managementChannel;
 
     #hasParticipated;
+    #retryCount;
 
     constructor(myName) {
         this.myName = myName;
         this.#theOtherClients = new Map();
         this.#hasParticipated = false;
+        this.#retryCount = 0;
     }
 
     async participate(spaceIdentifier) {
@@ -89,17 +94,26 @@ export default class Participants {
             t: this.#pmToken
         });
         this.#managementChannel.onopen(() => {
+            this.#retryCount = 0;
             this.#managementChannel.send({
-                cmd: 'requestParticipantsManagement',
+                cmd: 'resetToken',
                 clientId: this.clientId
             });
         });
         this.#managementChannel.onclose(() => {
-            alert('サーバーとの接続が切断されました。画面をリロードして再度参加してください。');
+            Logger.debug('Participants management channel closed.');
+            this.#tryToConnect();
         });
         this.#managementChannel.onmessage(messageObj => {
 
             switch (messageObj.cmd) {
+            case 'resetToken':
+                this.#pmToken = messageObj.pmToken;
+                this.#managementChannel.send({
+                    cmd: 'requestParticipantsManagement',
+                    clientId: this.clientId
+                });
+                break;
             case 'newOpen':
                 this.#resetAllClients(messageObj.allClients);
                 break;
@@ -117,6 +131,24 @@ export default class Participants {
                 return;
             }
         });
+    }
+
+    #tryToConnect() {
+        this.#retryCount++;
+        if (MAX_RETRY_COUNT <= this.#retryCount) {
+            alert('サーバーとの接続が切断されました。画面をリロードして再度参加してください。');
+            return;
+        }
+        setTimeout(() => {
+            if (this.#retryCount === 0) {
+                return;
+            }
+            this.#managementChannel.resetSocket({
+                clientId: this.clientId,
+                t: this.#pmToken
+            });
+        }, RETRY_INTERVAL_MILLIS);
+
     }
 
     #resetAllClients(allClients) {
