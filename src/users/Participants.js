@@ -109,6 +109,8 @@ export default class Participants {
             switch (messageObj.cmd) {
             case 'resetToken':
                 this.#pmToken = messageObj.pmToken;
+                this.vrmToken = messageObj.vrmToken;
+
                 this.#managementChannel.send({
                     cmd: 'requestParticipantsManagement',
                     clientId: this.clientId
@@ -118,6 +120,10 @@ export default class Participants {
                 this.#resetAllClients(messageObj.allClients);
                 break;
             case 'refleshClients':
+                if (messageObj.pmToken) {
+                    this.#pmToken = messageObj.pmToken;
+                    this.vrmToken = messageObj.vrmToken;
+                }
                 this.#resetAllClients(messageObj.allClients);
                 break;
             case 'ping':
