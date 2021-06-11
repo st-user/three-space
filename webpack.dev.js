@@ -1,6 +1,6 @@
-const { merge } = require('webpack-merge');
-const common = require('./webpack.common.js');
-const CopyPlugin = require('copy-webpack-plugin');
+const { merge } = require('webpack-merge');// eslint-disable-line
+const common = require('./webpack.common.js');// eslint-disable-line
+const CopyPlugin = require('copy-webpack-plugin');// eslint-disable-line
 
 module.exports = merge(common, {
     entry: {

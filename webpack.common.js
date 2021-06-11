@@ -1,7 +1,7 @@
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
-const packageInfo = require('./package.json');
-const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');// eslint-disable-line
+const CopyPlugin = require('copy-webpack-plugin');// eslint-disable-line
+const packageInfo = require('./package.json');// eslint-disable-line
+const path = require('path');// eslint-disable-line
 
 module.exports = {
     entry: {
