@@ -13,6 +13,7 @@
     "start": "webpack serve --config webpack.dev.js",
     "lint:js-one": "eslint",
     "lint:js": "eslint 'src/**/*.js'",
+    "lint:ts": "eslint 'src/**/*.ts'",
     "lint:css": "stylelint 'scss/**/*.scss'",
     "lint:html": "htmlhint 'html/index.html'",
     "build-css": "node-sass scss --output scss-dest --output-style compressed && node-sass base-scss --output scss-dest --output-style compressed"
@@ -25,6 +26,9 @@
     "@babel/plugin-proposal-class-properties": "^7.13.0",
     "@babel/plugin-proposal-private-methods": "^7.13.0",
     "@babel/preset-env": "^7.14.4",
+    "@babel/preset-typescript": "^7.14.5",
+    "@typescript-eslint/eslint-plugin": "^4.26.1",
+    "@typescript-eslint/parser": "^4.26.1",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^9.0.0",
