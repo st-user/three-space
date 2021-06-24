@@ -38,15 +38,8 @@ export default class RTCConnection {
         this.#realTimeDataMessageHandlers = [];
         this.#fileTransferMessageHandlers = [];
 
-        if (iceServerInfo.turnCredentials) {
-            this.#iceServers = [
-                { url: iceServerInfo.stunUrl },
-                {
-                    url: iceServerInfo.turnUrl,
-                    credential: iceServerInfo.turnCredentials.password,
-                    username: iceServerInfo.turnCredentials.username
-                }
-            ];
+        if (iceServerInfo) {
+            this.#iceServers = iceServerInfo.iceServers;
         }
     }
 
@@ -54,7 +47,7 @@ export default class RTCConnection {
         this.#currentGainValue = remoteAudioGainValue;
 
         this.#peerConnection = new RTCPeerConnection({
-            'iceServers': this.#iceServers
+            iceServers: this.#iceServers
         });
         this.#peerConnection.addEventListener('icecandidate', event => {
             if (event.candidate) {
